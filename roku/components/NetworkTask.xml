@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="NetworkTask" extends="Task">
+    <interface>
+        <!-- The URL to fetch from the Go Orchestrator -->
+        <field id="url" type="string" />
+        <!-- The resulting content node structured for the UI -->
+        <field id="content" type="node" />
+        <!-- Error message if request fails -->
+        <field id="error" type="string" />
+    </interface>
+
+    <script type="text/brightscript" uri="pkg:/components/NetworkTask.brs" />
+</component>

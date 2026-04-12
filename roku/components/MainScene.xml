@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="MainScene" extends="Scene">
+    <children>
+        <Label 
+            id="welcomeText"
+            text="Stremio Roku Loading..."
+            width="1920"
+            height="1080"
+            horizAlign="center"
+            vertAlign="center"
+            translation="[0,0]"
+        />
+        <PosterGrid 
+            id="movieGrid"
+            translation="[100, 200]"
+            basePosterSize="[300, 450]"
+            itemSpacing="[20, 20]"
+            numColumns="5"
+            numRows="2"
+            visible="false"
+        />
+    </children>
+
+    <script type="text/brightscript">
+        <![CDATA[
+        sub init()
+            m.welcomeText = m.top.findNode("welcomeText")
+            m.movieGrid = m.top.findNode("movieGrid")
+            
+            ' Trigger our Go Orchestrator
+            m.loadTask = CreateObject("roSGNode", "NetworkTask")
+            ' REPLACE THIS WITH YOUR ACTUAL LOCAL IP
+            m.loadTask.url = "http://192.168.1.50:8080/catalog/movie/top"
+            m.loadTask.observeField("content", "onContentReceived")
+            m.loadTask.control = "RUN"
+        end sub
+
+        sub onContentReceived()
+            if m.loadTask.content <> invalid
+                m.welcomeText.visible = false
+                m.movieGrid.content = m.loadTask.content
+                m.movieGrid.visible = true
+                m.movieGrid.setFocus(true)
+            end if
+        end sub
+        ]]>
+    </script>
+</component>

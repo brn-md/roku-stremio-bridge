@@ -1,0 +1,12 @@
+title=Stremio Roku
+major_version=1
+minor_version=0
+build_version=00001
+
+# The entry point for the app
+ui_resolutions=fhd
+
+# Icons (we will add these later, defaults for now)
+mm_icon_focus_fhd=pkg:/images/icon_fhd.png
+mm_icon_side_fhd=pkg:/images/icon_fhd.png
+splash_screen_fhd=pkg:/images/splash_fhd.png
